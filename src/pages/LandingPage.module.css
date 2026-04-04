@@ -1,0 +1,542 @@
+/* ───── Hero ───── */
+.hero {
+  padding: 160px 120px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heroTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--fm-forest);
+}
+
+.heroButtons {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.heroH1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 140px;
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 4px;
+  color: var(--fm-text);
+  margin: 0;
+}
+
+.heroH1Italic {
+  font-style: italic;
+}
+
+.heroDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  color: var(--fm-muted);
+  line-height: 1.6;
+  padding-top: 24px;
+}
+
+/* ───── Problem ───── */
+.problem {
+  display: flex;
+  gap: 80px;
+  padding: 160px 64px;
+  align-items: center;
+}
+
+.problemLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.problemTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--fm-muted);
+}
+
+.problemHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 36px;
+  letter-spacing: 6px;
+  line-height: 1.3;
+  color: var(--fm-text);
+}
+
+.problemBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  color: var(--fm-muted);
+  line-height: 1.8;
+}
+
+.problemStat {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 120px;
+  line-height: 1;
+  color: var(--fm-forest);
+}
+
+.problemStatLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--fm-muted);
+}
+
+.problemRight {
+  width: 480px;
+  height: 500px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.problemRight img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ───── Better (Features) ───── */
+.better {
+  background: var(--fm-surface);
+  padding: 160px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.betterHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 48px;
+  letter-spacing: 8px;
+  color: var(--fm-text);
+}
+
+.betterBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  color: var(--fm-muted);
+  line-height: 1.8;
+  max-width: 700px;
+}
+
+.featureRow {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  padding-top: 32px;
+  border-top: 1px solid var(--fm-sand);
+  width: 100%;
+}
+
+.featureDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--fm-forest);
+  flex-shrink: 0;
+}
+
+.featureTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: var(--fm-text);
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.featureBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  color: var(--fm-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+/* ───── Meet (Card Grid) ───── */
+.meet {
+  padding: 160px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.meetHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 48px;
+  letter-spacing: 8px;
+  color: var(--fm-text);
+  text-align: center;
+}
+
+.meetGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--fm-sand);
+  width: 100%;
+}
+
+.meetRow {
+  display: flex;
+  gap: 1px;
+}
+
+.meetCard {
+  flex: 1;
+  background: var(--fm-bg);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meetCardTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-style: italic;
+  letter-spacing: 4px;
+  color: var(--fm-text);
+}
+
+.meetCardBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--fm-muted);
+  line-height: 1.7;
+}
+
+/* ───── Stats (Dark) ───── */
+.stats {
+  background: var(--fm-soil);
+  padding: 96px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.statsHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 48px;
+  letter-spacing: 8px;
+  color: var(--fm-white);
+  text-align: center;
+}
+
+.statsGrid {
+  display: flex;
+  width: 100%;
+}
+
+.statCol {
+  flex: 1;
+  padding: 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.statCol + .statCol {
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.statValue {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--fm-white);
+}
+
+.statLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--fm-white-50);
+}
+
+/* ───── Planet (Quote) ───── */
+.planet {
+  padding: 160px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  overflow: hidden;
+}
+
+.planetHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 42px;
+  letter-spacing: 6px;
+  color: var(--fm-text);
+  text-align: center;
+  max-width: 1180px;
+}
+
+.planetBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  color: var(--fm-muted);
+  line-height: 1.8;
+  text-align: center;
+  max-width: 680px;
+}
+
+.planetImage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.planetQuote {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-style: italic;
+  color: var(--fm-text);
+  text-align: center;
+  max-width: 900px;
+}
+
+.planetAuthor {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fm-muted);
+}
+
+/* ───── Pricing ───── */
+.pricing {
+  background: var(--fm-surface);
+  padding: 160px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+.pricingHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 48px;
+  letter-spacing: 8px;
+  color: var(--fm-text);
+}
+
+.pricingGrid {
+  display: flex;
+  gap: 1px;
+  background: var(--fm-sand);
+  justify-content: center;
+  width: 100%;
+}
+
+.planCard {
+  background: var(--fm-bg);
+  padding: 48px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.planBasic {
+  height: 562px;
+}
+
+.planTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--fm-forest);
+}
+
+.planPrice {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-style: italic;
+  color: var(--fm-text);
+}
+
+.planDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--fm-muted);
+  line-height: 1.7;
+}
+
+.planFeat {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fm-text);
+}
+
+.planFeatOff {
+  color: var(--fm-muted);
+}
+
+/* ───── CTA ───── */
+.cta {
+  position: relative;
+  height: 500px;
+  background: var(--fm-soil);
+  overflow: hidden;
+}
+
+.ctaBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+}
+
+.ctaContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 120px;
+}
+
+.ctaHeading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 32px;
+  font-style: italic;
+  letter-spacing: 4px;
+  color: var(--fm-white);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ctaBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fm-white-70);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 500px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--fm-white);
+}
+
+.ctaDotGreen {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fm-forest-lt);
+}
+
+.ctaDotBeige {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fm-beige-dot);
+}
+
+/* ───── Footer ───── */
+.footer {
+  background: var(--fm-soil);
+  padding: 80px 64px;
+  display: flex;
+  gap: 48px;
+}
+
+.footerCol1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footerBrand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--fm-white);
+}
+
+.footerTag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--fm-white-50);
+}
+
+.footerEmail {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--fm-white);
+  text-decoration: none;
+}
+
+.footerCopy {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--fm-white-50);
+}
+
+.footerCol {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerColHead {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--fm-white);
+}
+
+.footerLink {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--fm-white-50);
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  color: var(--fm-white-70);
+}

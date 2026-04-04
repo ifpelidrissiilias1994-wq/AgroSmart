@@ -3,6 +3,7 @@ import DotButton from '../components/DotButton';
 import GrainOverlay from '../components/GrainOverlay';
 import ScrollVideo from '../components/ScrollVideo';
 import { useCountUp } from '../hooks/useCountUp';
+import { useParallax } from '../hooks/useParallax';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './LandingPage.module.css';
 
@@ -18,10 +19,16 @@ const LandingPage: React.FC = () => {
   const planetRef = useRef<HTMLElement>(null);
   const pricingRef = useRef<HTMLElement>(null);
   const pricingGridRef = useRef<HTMLDivElement>(null);
+  const planetImgRef = useRef<HTMLImageElement>(null);
+  const ctaBgRef = useRef<HTMLImageElement>(null);
   const ctaContentRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLElement>(null);
   const statCountRef = useRef<HTMLSpanElement>(null);
   const statDisplay = useCountUp(statCountRef, { end: 196000, duration: 2.5, separator: '.' });
+
+  useParallax(problemImgRef, -20);
+  useParallax(planetImgRef, -15);
+  useParallax(ctaBgRef, -10);
 
   useScrollReveal(problemRef, { y: 80, duration: 1.2 });
   useScrollReveal(problemImgRef, { x: 60, y: 0, duration: 1.4, delay: 0.2 });
@@ -169,6 +176,7 @@ const LandingPage: React.FC = () => {
         </p>
         <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
         <img
+          ref={planetImgRef}
           className={styles.planetImage}
           src="https://images.unsplash.com/photo-1501004318855-cddc70ca1930?w=1440&h=400&fit=crop"
           alt="Olive grove"
@@ -213,6 +221,7 @@ const LandingPage: React.FC = () => {
       {/* ───── CTA ───── */}
       <section className={styles.cta}>
         <img
+          ref={ctaBgRef}
           className={styles.ctaBg}
           src="/images/cta-bg.jpeg"
           alt=""
