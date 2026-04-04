@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import DotButton from '../components/DotButton';
 import GrainOverlay from '../components/GrainOverlay';
 import ScrollVideo from '../components/ScrollVideo';
+import { useCountUp } from '../hooks/useCountUp';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './LandingPage.module.css';
 
@@ -19,6 +20,8 @@ const LandingPage: React.FC = () => {
   const pricingGridRef = useRef<HTMLDivElement>(null);
   const ctaContentRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLElement>(null);
+  const statCountRef = useRef<HTMLSpanElement>(null);
+  const statDisplay = useCountUp(statCountRef, { end: 196000, duration: 2.5, separator: '.' });
 
   useScrollReveal(problemRef, { y: 80, duration: 1.2 });
   useScrollReveal(problemImgRef, { x: 60, y: 0, duration: 1.4, delay: 0.2 });
@@ -54,7 +57,7 @@ const LandingPage: React.FC = () => {
             a tecnología asequible, las decisiones de riego, tratamiento y cosecha se basan
             en intuición — no en ciencia.
           </p>
-          <span className={styles.problemStat}>196.000</span>
+          <span ref={statCountRef} className={styles.problemStat}>{statDisplay}</span>
           <span className={styles.problemStatLabel}>EXPLOTACIONES EN ANDALUCÍA</span>
         </div>
         <div ref={problemImgRef} className={styles.problemRight}>
