@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --fm-bg: #F5F0E8;
+  --fm-surface: #EDE7D6;
+  --fm-soil: #1A1A14;
+  --fm-text: #1A1A14;
+  --fm-muted: #6B6454;
+  --fm-sand: #D4C9B0;
+  --fm-forest: #2D5A1B;
+  --fm-forest-lt: #4A7C2F;
+  --fm-beige-dot: #C9B99A;
+  --fm-white: #FFFFFF;
+  --fm-white-50: rgba(255,255,255,0.5);
+  --fm-white-10: rgba(255,255,255,0.1);
+  --fm-white-70: rgba(255,255,255,0.7);
+  --fm-amber: #B8860B;
+  --fm-red: #8B0000;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--fm-bg);
+  color: var(--fm-text);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
