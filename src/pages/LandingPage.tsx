@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import DotButton from '../components/DotButton';
 import GrainOverlay from '../components/GrainOverlay';
 import ScrollVideo from '../components/ScrollVideo';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import styles from './LandingPage.module.css';
 
 const LandingPage: React.FC = () => {
+  const problemRef = useRef<HTMLElement>(null);
+  const problemImgRef = useRef<HTMLDivElement>(null);
+  const betterRef = useRef<HTMLElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const meetRef = useRef<HTMLElement>(null);
+  const meetGridRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
+  const statsGridRef = useRef<HTMLDivElement>(null);
+  const planetRef = useRef<HTMLElement>(null);
+  const pricingRef = useRef<HTMLElement>(null);
+  const pricingGridRef = useRef<HTMLDivElement>(null);
+  const ctaContentRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
+
+  useScrollReveal(problemRef, { y: 80, duration: 1.2 });
+  useScrollReveal(problemImgRef, { x: 60, y: 0, duration: 1.4, delay: 0.2 });
+  useScrollReveal(betterRef, { y: 60, duration: 1 });
+  useScrollReveal(featuresRef, { y: 40, children: true, stagger: 0.2, duration: 0.8 });
+  useScrollReveal(meetRef, { y: 50, duration: 1 });
+  useScrollReveal(meetGridRef, { y: 40, scale: 0.97, children: true, stagger: 0.15, duration: 0.8 });
+  useScrollReveal(statsRef, { y: 40, duration: 1 });
+  useScrollReveal(statsGridRef, { y: 30, children: true, stagger: 0.12, duration: 0.8 });
+  useScrollReveal(planetRef, { y: 60, children: true, stagger: 0.2, duration: 1.2 });
+  useScrollReveal(pricingRef, { y: 50, duration: 1 });
+  useScrollReveal(pricingGridRef, { y: 40, children: true, stagger: 0.2, duration: 0.9 });
+  useScrollReveal(ctaContentRef, { y: 30, duration: 1.2 });
+  useScrollReveal(footerRef, { y: 30, children: true, stagger: 0.1, duration: 0.8 });
+
   return (
     <div>
       <GrainOverlay />
@@ -13,7 +42,7 @@ const LandingPage: React.FC = () => {
       <ScrollVideo />
 
       {/* ───── Problem ───── */}
-      <section className={styles.problem}>
+      <section ref={problemRef} className={styles.problem}>
         <div className={styles.problemLeft}>
           <span className={styles.problemTag}>LA MAYORÍA DE FINCAS DECIDEN SIN DATOS</span>
           <h2 className={styles.problemHeading}>
@@ -28,7 +57,7 @@ const LandingPage: React.FC = () => {
           <span className={styles.problemStat}>196.000</span>
           <span className={styles.problemStatLabel}>EXPLOTACIONES EN ANDALUCÍA</span>
         </div>
-        <div className={styles.problemRight}>
+        <div ref={problemImgRef} className={styles.problemRight}>
           <img
             src="/images/olivos-problem.jpeg"
             alt="Olivos"
@@ -37,7 +66,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ───── Better (Features) ───── */}
-      <section className={styles.better} id="producto">
+      <section ref={betterRef} className={styles.better} id="producto">
         <h2 className={styles.betterHeading}>
           D a t o s &nbsp; r e a l e s , &nbsp; d e c i s i o n e s<br />
           i n t e l i g e n t e s
@@ -48,38 +77,40 @@ const LandingPage: React.FC = () => {
         </p>
         <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
 
-        <div className={styles.featureRow}>
-          <div className={styles.featureDot} />
-          <span className={styles.featureTitle}>AEMET + RIA integrados</span>
-          <span className={styles.featureBody}>
-            Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de
-            Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.
-          </span>
-        </div>
+        <div ref={featuresRef}>
+          <div className={styles.featureRow}>
+            <div className={styles.featureDot} />
+            <span className={styles.featureTitle}>AEMET + RIA integrados</span>
+            <span className={styles.featureBody}>
+              Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de
+              Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.
+            </span>
+          </div>
 
-        <div className={styles.featureRow}>
-          <div className={styles.featureDot} />
-          <span className={styles.featureTitle}>IGME + SISA conectados</span>
-          <span className={styles.featureBody}>
-            Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos.
-            pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.
-          </span>
-        </div>
+          <div className={styles.featureRow}>
+            <div className={styles.featureDot} />
+            <span className={styles.featureTitle}>IGME + SISA conectados</span>
+            <span className={styles.featureBody}>
+              Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos.
+              pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.
+            </span>
+          </div>
 
-        <div className={styles.featureRow}>
-          <div className={styles.featureDot} />
-          <span className={styles.featureTitle}>IA predictiva incluida</span>
-          <span className={styles.featureBody}>
-            Motor de inteligencia artificial que analiza tus datos históricos y genera
-            recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.
-          </span>
+          <div className={styles.featureRow}>
+            <div className={styles.featureDot} />
+            <span className={styles.featureTitle}>IA predictiva incluida</span>
+            <span className={styles.featureBody}>
+              Motor de inteligencia artificial que analiza tus datos históricos y genera
+              recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.
+            </span>
+          </div>
         </div>
       </section>
 
       {/* ───── Meet (Card Grid) ───── */}
-      <section className={styles.meet}>
+      <section ref={meetRef} className={styles.meet}>
         <h2 className={styles.meetHeading}>C o n o c e &nbsp; A g r o S m a r t</h2>
-        <div className={styles.meetGrid}>
+        <div ref={meetGridRef} className={styles.meetGrid}>
           <div className={styles.meetRow}>
             <div className={styles.meetCard}>
               <h3 className={styles.meetCardTitle}>E T 0 &nbsp; y &nbsp; E T c</h3>
@@ -116,9 +147,9 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ───── Stats (Dark) ───── */}
-      <section className={styles.stats}>
+      <section ref={statsRef} className={styles.stats}>
         <h2 className={styles.statsHeading}>P r o b a d o &nbsp; e n &nbsp; c a m p o</h2>
-        <div className={styles.statsGrid}>
+        <div ref={statsGridRef} className={styles.statsGrid}>
           <div className={styles.statCol}><div className={styles.statValue}>19,99€</div><div className={styles.statLabel}>AL MES — SIN HARDWARE</div></div>
           <div className={styles.statCol}><div className={styles.statValue}>5+</div><div className={styles.statLabel}>FUENTES DE DATOS OFICIALES</div></div>
           <div className={styles.statCol}><div className={styles.statValue}>70%</div><div className={styles.statLabel}>FINCAS MENORES DE 20 HA</div></div>
@@ -127,7 +158,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ───── Planet (Quote) ───── */}
-      <section className={styles.planet} id="ciencia">
+      <section ref={planetRef} className={styles.planet} id="ciencia">
         <h2 className={styles.planetHeading}>P a r a &nbsp; t u &nbsp; f i n c a . &nbsp; P a r a &nbsp; A n d a l u c í a .</h2>
         <p className={styles.planetBody}>
           Una plataforma diseñada para el agricultor andaluz — con datos locales,
@@ -146,9 +177,9 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ───── Pricing ───── */}
-      <section className={styles.pricing} id="precios">
+      <section ref={pricingRef} className={styles.pricing} id="precios">
         <h2 className={styles.pricingHeading}>E l i g e &nbsp; t u &nbsp; p l a n</h2>
-        <div className={styles.pricingGrid}>
+        <div ref={pricingGridRef} className={styles.pricingGrid}>
           <div className={`${styles.planCard} ${styles.planBasic}`}>
             <span className={styles.planTag}>PLAN BÁSICO</span>
             <div className={styles.planPrice}>Gratuito</div>
@@ -184,7 +215,7 @@ const LandingPage: React.FC = () => {
           alt=""
           aria-hidden="true"
         />
-        <div className={styles.ctaContent}>
+        <div ref={ctaContentRef} className={styles.ctaContent}>
           <h2 className={styles.ctaHeading}>N o &nbsp; h a y &nbsp; m u c h a s &nbsp; o p o r t u n i d a d e s<br />d e &nbsp; s e r &nbsp; e l &nbsp; p r i m e r o .</h2>
           <h2 className={styles.ctaHeading}>D e &nbsp; l i d e r a r , &nbsp; n o &nbsp; s e g u i r .</h2>
           <p className={styles.ctaBody}>
@@ -199,7 +230,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* ───── Footer ───── */}
-      <footer className={styles.footer}>
+      <footer ref={footerRef} className={styles.footer}>
         <div className={styles.footerCol1}>
           <div className={styles.footerBrand}>AgroSmart</div>
           <span className={styles.footerTag}>Andalucía</span>
