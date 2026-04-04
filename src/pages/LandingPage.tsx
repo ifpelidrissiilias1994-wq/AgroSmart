@@ -1,0 +1,234 @@
+import React from 'react';
+import DotButton from '../components/DotButton';
+import GrainOverlay from '../components/GrainOverlay';
+import ScrollVideo from '../components/ScrollVideo';
+import styles from './LandingPage.module.css';
+
+const LandingPage: React.FC = () => {
+  return (
+    <div>
+      <GrainOverlay />
+
+      {/* ───── Scroll-Scrub Hero (nav + hero + video unified) ───── */}
+      <ScrollVideo />
+
+      {/* ───── Problem ───── */}
+      <section className={styles.problem}>
+        <div className={styles.problemLeft}>
+          <span className={styles.problemTag}>LA MAYORÍA DE FINCAS DECIDEN SIN DATOS</span>
+          <h2 className={styles.problemHeading}>
+            ¿ C u á n t o &nbsp; p o d r í a s<br />
+            a h o r r a r &nbsp; c o n &nbsp; d a t o s &nbsp; r e a l e s ?
+          </h2>
+          <p className={styles.problemBody}>
+            El 70% de las explotaciones andaluzas son menores de 20 hectáreas. Sin acceso
+            a tecnología asequible, las decisiones de riego, tratamiento y cosecha se basan
+            en intuición — no en ciencia.
+          </p>
+          <span className={styles.problemStat}>196.000</span>
+          <span className={styles.problemStatLabel}>EXPLOTACIONES EN ANDALUCÍA</span>
+        </div>
+        <div className={styles.problemRight}>
+          <img
+            src="/images/olivos-problem.jpeg"
+            alt="Olivos"
+          />
+        </div>
+      </section>
+
+      {/* ───── Better (Features) ───── */}
+      <section className={styles.better} id="producto">
+        <h2 className={styles.betterHeading}>
+          D a t o s &nbsp; r e a l e s , &nbsp; d e c i s i o n e s<br />
+          i n t e l i g e n t e s
+        </h2>
+        <p className={styles.betterBody}>
+          AgroSmart conecta fuentes de datos oficiales con inteligencia artificial para
+          ofrecerte recomendaciones personalizadas — sin hardware adicional, desde 19,99€/mes.
+        </p>
+        <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
+
+        <div className={styles.featureRow}>
+          <div className={styles.featureDot} />
+          <span className={styles.featureTitle}>AEMET + RIA integrados</span>
+          <span className={styles.featureBody}>
+            Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de
+            Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.
+          </span>
+        </div>
+
+        <div className={styles.featureRow}>
+          <div className={styles.featureDot} />
+          <span className={styles.featureTitle}>IGME + SISA conectados</span>
+          <span className={styles.featureBody}>
+            Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos.
+            pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.
+          </span>
+        </div>
+
+        <div className={styles.featureRow}>
+          <div className={styles.featureDot} />
+          <span className={styles.featureTitle}>IA predictiva incluida</span>
+          <span className={styles.featureBody}>
+            Motor de inteligencia artificial que analiza tus datos históricos y genera
+            recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.
+          </span>
+        </div>
+      </section>
+
+      {/* ───── Meet (Card Grid) ───── */}
+      <section className={styles.meet}>
+        <h2 className={styles.meetHeading}>C o n o c e &nbsp; A g r o S m a r t</h2>
+        <div className={styles.meetGrid}>
+          <div className={styles.meetRow}>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>E T 0 &nbsp; y &nbsp; E T c</h3>
+              <p className={styles.meetCardBody}>
+                Evapotranspiración de referencia y del cultivo calculada diariamente. Sabe
+                exactamente cuánta agua necesitan tus plantas.
+              </p>
+            </div>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>N D V I &nbsp; s a t é l i t e</h3>
+              <p className={styles.meetCardBody}>
+                Índice de vegetación por satélite para monitorizar la salud de tus cultivos
+                sin pisar el campo. Actualización cada 5 días.
+              </p>
+            </div>
+          </div>
+          <div className={styles.meetRow}>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>V P D &nbsp; y &nbsp; r i e s g o</h3>
+              <p className={styles.meetCardBody}>
+                Déficit de presión de vapor para detectar estrés hídrico y riesgo
+                fitosanitario antes de que sea visible. Alertas automáticas por umbral.
+              </p>
+            </div>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>R e c o m e n d a c i o n e s &nbsp; I A</h3>
+              <p className={styles.meetCardBody}>
+                Acciones semanales generadas por IA: cuándo regar, cuándo tratar, cuándo
+                cosechar. Con nivel de confianza y fuente de datos trazable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── Stats (Dark) ───── */}
+      <section className={styles.stats}>
+        <h2 className={styles.statsHeading}>P r o b a d o &nbsp; e n &nbsp; c a m p o</h2>
+        <div className={styles.statsGrid}>
+          <div className={styles.statCol}><div className={styles.statValue}>19,99€</div><div className={styles.statLabel}>AL MES — SIN HARDWARE</div></div>
+          <div className={styles.statCol}><div className={styles.statValue}>5+</div><div className={styles.statLabel}>FUENTES DE DATOS OFICIALES</div></div>
+          <div className={styles.statCol}><div className={styles.statValue}>70%</div><div className={styles.statLabel}>FINCAS MENORES DE 20 HA</div></div>
+          <div className={styles.statCol}><div className={styles.statValue}>30</div><div className={styles.statLabel}>DÍAS DE PRUEBA GRATUITA</div></div>
+        </div>
+      </section>
+
+      {/* ───── Planet (Quote) ───── */}
+      <section className={styles.planet} id="ciencia">
+        <h2 className={styles.planetHeading}>P a r a &nbsp; t u &nbsp; f i n c a . &nbsp; P a r a &nbsp; A n d a l u c í a .</h2>
+        <p className={styles.planetBody}>
+          Una plataforma diseñada para el agricultor andaluz — con datos locales,
+          en español, y a un precio que cabe en cualquier explotación.
+        </p>
+        <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
+        <img
+          className={styles.planetImage}
+          src="https://images.unsplash.com/photo-1501004318855-cddc70ca1930?w=1440&h=400&fit=crop"
+          alt="Olive grove"
+        />
+        <p className={styles.planetQuote}>
+          &ldquo;Si me ahorra un solo tratamiento mal puesto al año, ya merece la pena.&rdquo;
+        </p>
+        <span className={styles.planetAuthor}>Antonio M., olivicultor, Jaén</span>
+      </section>
+
+      {/* ───── Pricing ───── */}
+      <section className={styles.pricing} id="precios">
+        <h2 className={styles.pricingHeading}>E l i g e &nbsp; t u &nbsp; p l a n</h2>
+        <div className={styles.pricingGrid}>
+          <div className={`${styles.planCard} ${styles.planBasic}`}>
+            <span className={styles.planTag}>PLAN BÁSICO</span>
+            <div className={styles.planPrice}>Gratuito</div>
+            <div className={styles.planDesc}>Para empezar a conocer tus datos</div>
+            <div className={styles.planFeat}>✓  Hasta 2 parcelas</div>
+            <div className={styles.planFeat}>✓  Datos AEMET básicos</div>
+            <div className={`${styles.planFeat} ${styles.planFeatOff}`}>✗  Sin IA ni recomendaciones</div>
+            <div className={`${styles.planFeat} ${styles.planFeatOff}`}>✗  Sin alertas automáticas</div>
+            <div className={`${styles.planFeat} ${styles.planFeatOff}`}>✗  Sin exportación de datos</div>
+            <DotButton variant="outline" href="/register">EMPEZAR GRATIS</DotButton>
+          </div>
+          <div className={styles.planCard}>
+            <span className={styles.planTag}>PLAN PREMIUM</span>
+            <div className={styles.planPrice}>19,99 €/mes</div>
+            <div className={styles.planDesc}>Todo lo que necesitas para optimizar tu finca</div>
+            <div className={styles.planFeat}>✓  Parcelas ilimitadas</div>
+            <div className={styles.planFeat}>✓  Datos completos AEMET + RIA + IGME + SISA</div>
+            <div className={styles.planFeat}>✓  Motor IA con recomendaciones semanales</div>
+            <div className={styles.planFeat}>✓  Alertas automáticas por VPD/NDVI</div>
+            <div className={styles.planFeat}>✓  Exportación XLSX ilimitada</div>
+            <div className={styles.planFeat}>✓  Bitácora de acciones completa</div>
+            <div className={styles.planFeat}>✓  Soporte prioritario por email</div>
+            <DotButton variant="primary" href="/register" dotColor="#4A7C2F">ACTIVAR PREMIUM</DotButton>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── CTA ───── */}
+      <section className={styles.cta}>
+        <img
+          className={styles.ctaBg}
+          src="/images/cta-bg.jpeg"
+          alt=""
+          aria-hidden="true"
+        />
+        <div className={styles.ctaContent}>
+          <h2 className={styles.ctaHeading}>N o &nbsp; h a y &nbsp; m u c h a s &nbsp; o p o r t u n i d a d e s<br />d e &nbsp; s e r &nbsp; e l &nbsp; p r i m e r o .</h2>
+          <h2 className={styles.ctaHeading}>D e &nbsp; l i d e r a r , &nbsp; n o &nbsp; s e g u i r .</h2>
+          <p className={styles.ctaBody}>
+            AgroSmart Andalucía está abierto para agricultores que quieren tomar decisiones
+            basadas en datos reales. 30 días gratuitos, sin tarjeta de crédito.
+          </p>
+          <div className={styles.ctaButtons}>
+            <a href="/register" className={styles.ctaBtn}><span className={styles.ctaDotGreen} /><span>PRUEBA GRATUITA</span><span className={styles.ctaDotGreen} /></a>
+            <a href="#" className={styles.ctaBtn}><span className={styles.ctaDotBeige} /><span>CONTACTAR</span><span className={styles.ctaDotBeige} /></a>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── Footer ───── */}
+      <footer className={styles.footer}>
+        <div className={styles.footerCol1}>
+          <div className={styles.footerBrand}>AgroSmart</div>
+          <span className={styles.footerTag}>Andalucía</span>
+          <a className={styles.footerEmail} href="mailto:hola@agrosmart.es">hola@agrosmart.es</a>
+          <div className={styles.footerCopy}>© 2026 AgroSmart Andalucía</div>
+        </div>
+        <div className={styles.footerCol}>
+          <div className={styles.footerColHead}>PRODUCTO</div>
+          <a className={styles.footerLink} href="/parcelas">Dashboard</a>
+          <a className={styles.footerLink} href="/parcelas">Parcelas</a>
+          <a className={styles.footerLink} href="/historico">Histórico</a>
+          <a className={styles.footerLink} href="#">IA Engine</a>
+        </div>
+        <div className={styles.footerCol}>
+          <div className={styles.footerColHead}>DATOS</div>
+          <a className={styles.footerLink} href="#">AEMET</a>
+          <a className={styles.footerLink} href="#">RIA</a>
+          <a className={styles.footerLink} href="#">IGME</a>
+          <a className={styles.footerLink} href="#">SISA / CAPDR</a>
+        </div>
+        <div className={styles.footerCol}>
+          <div className={styles.footerColHead}>EMPRESA</div>
+          <a className={styles.footerLink} href="#">Sobre nosotros</a>
+          <a className={styles.footerLink} href="#">Inversores</a>
+          <a className={styles.footerLink} href="#">Privacidad</a>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default LandingPage;
