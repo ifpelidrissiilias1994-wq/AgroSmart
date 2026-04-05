@@ -5,6 +5,7 @@ import ScrollVideo from '../components/ScrollVideo';
 import { useCountUp } from '../hooks/useCountUp';
 import { useParallax } from '../hooks/useParallax';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import SplitText from '../components/SplitText';
 import styles from './LandingPage.module.css';
 
 const LandingPage: React.FC = () => {
@@ -55,10 +56,9 @@ const LandingPage: React.FC = () => {
       <section ref={problemRef} className={styles.problem}>
         <div className={styles.problemLeft}>
           <span className={styles.problemTag}>LA MAYORÍA DE FINCAS DECIDEN SIN DATOS</span>
-          <h2 className={styles.problemHeading}>
-            ¿ C u á n t o &nbsp; p o d r í a s<br />
-            a h o r r a r &nbsp; c o n &nbsp; d a t o s &nbsp; r e a l e s ?
-          </h2>
+          <SplitText as="h2" className={styles.problemHeading} stagger={0.02} duration={0.6}>
+            ¿Cuánto podrías ahorrar con datos reales?
+          </SplitText>
           <p className={styles.problemBody}>
             El 70% de las explotaciones andaluzas son menores de 20 hectáreas. Sin acceso
             a tecnología asequible, las decisiones de riego, tratamiento y cosecha se basan
@@ -77,10 +77,9 @@ const LandingPage: React.FC = () => {
 
       {/* ───── Better (Features) ───── */}
       <section ref={betterRef} className={styles.better} id="producto">
-        <h2 className={styles.betterHeading}>
-          D a t o s &nbsp; r e a l e s , &nbsp; d e c i s i o n e s<br />
-          i n t e l i g e n t e s
-        </h2>
+        <SplitText as="h2" className={styles.betterHeading} stagger={0.02} duration={0.6}>
+          Datos reales, decisiones inteligentes
+        </SplitText>
         <p className={styles.betterBody}>
           AgroSmart conecta fuentes de datos oficiales con inteligencia artificial para
           ofrecerte recomendaciones personalizadas — sin hardware adicional, desde 19,99€/mes.
@@ -119,7 +118,9 @@ const LandingPage: React.FC = () => {
 
       {/* ───── Meet (Card Grid) ───── */}
       <section ref={meetRef} className={styles.meet}>
-        <h2 className={styles.meetHeading}>C o n o c e &nbsp; A g r o S m a r t</h2>
+        <SplitText as="h2" className={styles.meetHeading} stagger={0.015} duration={0.5}>
+          Conoce AgroSmart
+        </SplitText>
         <div ref={meetGridRef} className={styles.meetGrid}>
           <div className={styles.meetRow}>
             <div className={styles.meetCard}>
@@ -158,7 +159,9 @@ const LandingPage: React.FC = () => {
 
       {/* ───── Stats (Dark) ───── */}
       <section ref={statsRef} className={styles.stats}>
-        <h2 className={styles.statsHeading}>P r o b a d o &nbsp; e n &nbsp; c a m p o</h2>
+        <SplitText as="h2" className={styles.statsHeading} stagger={0.015} duration={0.5}>
+          Probado en campo
+        </SplitText>
         <div ref={statsGridRef} className={styles.statsGrid}>
           <div className={styles.statCol}><div className={styles.statValue}>19,99€</div><div className={styles.statLabel}>AL MES — SIN HARDWARE</div></div>
           <div className={styles.statCol}><div className={styles.statValue}>5+</div><div className={styles.statLabel}>FUENTES DE DATOS OFICIALES</div></div>

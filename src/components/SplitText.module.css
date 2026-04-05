@@ -1,0 +1,10 @@
+.wrapper {
+  overflow: hidden;
+  display: block;
+}
+
+.char {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+}
