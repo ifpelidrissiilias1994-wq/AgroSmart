@@ -540,3 +540,9 @@
 .footerLink:hover {
   color: var(--fm-white-70);
 }
+
+/* GPU hints for animated elements */
+.problemLeft, .problemRight, .featureRow,
+.meetCard, .statCol, .planetImage, .ctaContent {
+  will-change: transform, opacity;
+}

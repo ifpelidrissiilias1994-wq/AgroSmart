@@ -1,0 +1,5 @@
+.grid {
+  display: flex;
+  gap: 1px;
+  background: var(--fm-sand);
+}

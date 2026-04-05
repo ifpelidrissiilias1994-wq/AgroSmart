@@ -1,0 +1,144 @@
+.page {
+  min-height: 100vh;
+  background: var(--fm-bg);
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--fm-soil);
+  margin-bottom: 32px;
+  letter-spacing: 2px;
+}
+
+.card {
+  background: var(--fm-surface);
+  border: 1px solid var(--fm-sand);
+  border-radius: 10px;
+  padding: 28px 24px;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--fm-soil);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--fm-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--fm-sand);
+  border-radius: 6px;
+  background: var(--fm-bg);
+  color: var(--fm-soil);
+  outline: none;
+}
+
+.input:focus { border-color: var(--fm-forest); }
+
+.readonly {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fm-muted);
+  padding: 10px 0;
+}
+
+.btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: var(--fm-soil);
+  color: var(--fm-bg);
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn:hover { opacity: 0.85; }
+
+.btnOutline {
+  composes: btn;
+  background: transparent;
+  color: var(--fm-muted);
+  border: 1px solid var(--fm-sand);
+}
+
+.btnDanger {
+  composes: btn;
+  background: var(--fm-red);
+  color: white;
+}
+
+.text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--fm-muted);
+  line-height: 1.5;
+}
+
+.error {
+  background: rgba(139, 0, 0, 0.08);
+  color: var(--fm-red);
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.success {
+  background: rgba(45, 90, 27, 0.08);
+  color: var(--fm-forest);
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 20, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--fm-surface);
+  border: 1px solid var(--fm-sand);
+  border-radius: 12px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 400px;
+}

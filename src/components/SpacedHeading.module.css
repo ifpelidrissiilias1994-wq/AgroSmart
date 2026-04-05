@@ -1,0 +1,6 @@
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--fm-text);
+}

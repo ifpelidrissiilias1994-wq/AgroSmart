@@ -1,0 +1,279 @@
+/* ───── Scroll-Scrub Video Wrapper ───── */
+.wrapper {
+  position: relative;
+  height: 500vh;
+  background: #0a0a08;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ───── Canvas ───── */
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+/* ───── Poster (loading state) ───── */
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ───── Nav overlay on video ───── */
+.svNav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  padding: 0 64px;
+  height: 64px;
+  gap: 32px;
+}
+
+.navLogoWhite {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--fm-white);
+}
+
+.navTagWhite {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+
+.navSpacer { flex: 1; }
+
+.navLinkWhite {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+
+.navLinkWhiteBold {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--fm-white);
+  text-decoration: none;
+}
+
+/* ───── Hero Content Overlay (fades out 0-20%) ───── */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 120px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.heroOverlay a { pointer-events: auto; }
+
+.heroTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.7);
+}
+
+.heroDot {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.dotWhite {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.heroBtn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--fm-white);
+}
+
+.svH1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 140px;
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--fm-white);
+  margin: 0;
+}
+
+.svH1:first-of-type {
+  margin-top: 24px;
+}
+
+.heroDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+  margin-top: 24px;
+  max-width: 560px;
+}
+
+/* ───── Problem Teaser Overlay (fades in 80-100%) ───── */
+.teaserOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 80px;
+  background: linear-gradient(to top, rgba(245,240,232,0.95) 0%, rgba(245,240,232,0.4) 35%, transparent 65%);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+
+.teaserTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--fm-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.teaserHeading {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  color: var(--fm-text);
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.teaserArrow {
+  font-size: 28px;
+  color: var(--fm-muted);
+  animation: svBounce 2s ease-in-out infinite;
+}
+
+@keyframes svBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ───── Reduced Motion Fallback ───── */
+.reduced {
+  background: var(--fm-bg);
+}
+
+.fallbackNav {
+  display: flex;
+  align-items: center;
+  padding: 0 64px;
+  height: 64px;
+  gap: 32px;
+}
+
+.navLogo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--fm-text);
+}
+
+.navTag {
+  font-family: 'DM Sans', sans-serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--fm-muted);
+}
+
+.navLink {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--fm-muted);
+  text-decoration: none;
+}
+
+.navLinkGreen {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--fm-forest);
+  text-decoration: none;
+}
+
+.fallbackHero {
+  padding: 160px 120px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fallbackTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--fm-forest);
+}
+
+.fallbackH1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 140px;
+  line-height: 0.9;
+  letter-spacing: 4px;
+  color: var(--fm-text);
+  margin: 0;
+}
+
+.fallbackDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  color: var(--fm-muted);
+  line-height: 1.6;
+  padding-top: 24px;
+}
+
+.reducedImg {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+}

@@ -1,0 +1,193 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Left panel ── */
+.left {
+  width: 55%;
+  flex-shrink: 0;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--fm-text);
+  margin-right: auto;
+}
+
+/* ── Search row ── */
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchInput {
+  flex: 1;
+  height: 36px;
+  padding: 0 12px;
+  background: var(--fm-surface);
+  border: 1px solid var(--fm-sand);
+  border-radius: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--fm-text);
+  outline: none;
+}
+
+.searchInput::placeholder { color: var(--fm-muted); }
+
+/* ── Status badges ── */
+.statusNormal { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--fm-forest); }
+.statusAlerta { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--fm-amber); }
+.statusCritico { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 1px; color: var(--fm-red); }
+
+.parcelLink {
+  color: var(--fm-soil);
+  text-decoration: none;
+  font-weight: 500;
+}
+.parcelLink:hover { text-decoration: underline; color: var(--fm-forest); }
+
+.loading, .empty {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--fm-muted);
+  text-align: center;
+  padding: 48px 0;
+}
+
+/* ── Right panel (map) ── */
+.right {
+  flex: 1;
+  min-width: 0;
+  background: var(--fm-surface);
+}
+
+.mapPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: var(--fm-muted);
+  letter-spacing: 2px;
+}
+
+/* ── Modals ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 20, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: var(--fm-surface);
+  border: 1px solid var(--fm-sand);
+  border-radius: 12px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.modalTitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--fm-soil);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--fm-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modalInput {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--fm-sand);
+  border-radius: 6px;
+  background: var(--fm-bg);
+  color: var(--fm-soil);
+  outline: none;
+}
+.modalInput:focus { border-color: var(--fm-forest); }
+
+.modalBtn {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: var(--fm-soil);
+  color: var(--fm-bg);
+  cursor: pointer;
+}
+.modalBtn:hover { opacity: 0.85; }
+.modalBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.modalBtnOutline {
+  composes: modalBtn;
+  background: transparent;
+  color: var(--fm-muted);
+  border: 1px solid var(--fm-sand);
+}
+
+.modalBtnDanger {
+  composes: modalBtn;
+  background: var(--fm-red);
+  color: white;
+}
+
+.error {
+  background: rgba(139, 0, 0, 0.08);
+  color: var(--fm-red);
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}

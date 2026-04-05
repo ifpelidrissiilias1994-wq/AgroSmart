@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--fm-sand);
+  width: 100%;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  background: var(--fm-surface);
+}
+
+.headerCell {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fm-muted);
+  padding: 0 16px;
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  background: var(--fm-bg);
+}
+
+.cell {
+  padding: 0 16px;
+  flex: 1;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--fm-text);
+}
