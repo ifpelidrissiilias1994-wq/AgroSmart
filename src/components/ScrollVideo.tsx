@@ -19,6 +19,9 @@ const ScrollVideo: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const heroOverlayRef = useRef<HTMLDivElement>(null);
   const teaserOverlayRef = useRef<HTMLDivElement>(null);
+  const h1Ref1 = useRef<HTMLHeadingElement>(null);
+  const h1Ref2 = useRef<HTMLHeadingElement>(null);
+  const descRef = useRef<HTMLDivElement>(null);
 
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const currentFrameRef = useRef(0);
@@ -111,6 +114,26 @@ const ScrollVideo: React.FC = () => {
         scrollTrigger: { trigger: wrapperRef.current, start: '80% bottom', end: 'bottom bottom', scrub: 0.5 },
       });
     }
+
+    // Multi-layer parallax for hero text
+    if (h1Ref1.current) {
+      gsap.to(h1Ref1.current, {
+        yPercent: -30, ease: 'none',
+        scrollTrigger: { trigger: wrapperRef.current, start: 'top top', end: '30% top', scrub: 0.3 },
+      });
+    }
+    if (h1Ref2.current) {
+      gsap.to(h1Ref2.current, {
+        yPercent: -50, ease: 'none',
+        scrollTrigger: { trigger: wrapperRef.current, start: 'top top', end: '30% top', scrub: 0.3 },
+      });
+    }
+    if (descRef.current) {
+      gsap.to(descRef.current, {
+        yPercent: -70, ease: 'none',
+        scrollTrigger: { trigger: wrapperRef.current, start: 'top top', end: '30% top', scrub: 0.3 },
+      });
+    }
   }, { dependencies: [firstFrameReady, prefersReducedMotion], scope: wrapperRef });
 
   // ── Reduced motion fallback ──
@@ -141,7 +164,7 @@ const ScrollVideo: React.FC = () => {
   }
 
   return (
-    <div ref={wrapperRef} className={styles.wrapper}>
+    <div ref={wrapperRef} className={styles.wrapper} data-cursor="SCROLL">
       <div className={styles.sticky}>
         {/* Poster while loading */}
         {!firstFrameReady && (
@@ -164,9 +187,9 @@ const ScrollVideo: React.FC = () => {
 
         {/* Hero content overlay — fades out 0–20% */}
         <div ref={heroOverlayRef} className={styles.heroOverlay}>
-          <h1 className={styles.svH1}><em>Agricultura,</em></h1>
-          <h1 className={styles.svH1}>Inteligente.</h1>
-          <div className={styles.heroDesc}>Optimiza tus decisiones de cultivo con datos reales de AEMET, IGME y SISA.<br />Para tu finca. Para Andalucía.</div>
+          <h1 ref={h1Ref1} className={styles.svH1}><em>Agricultura,</em></h1>
+          <h1 ref={h1Ref2} className={styles.svH1}>Inteligente.</h1>
+          <div ref={descRef} className={styles.heroDesc}>Optimiza tus decisiones de cultivo con datos reales de AEMET, IGME y SISA.<br />Para tu finca. Para Andalucía.</div>
         </div>
 
         {/* Problem teaser overlay — fades in 80–100% */}

@@ -1,7 +1,11 @@
 import React, { useRef } from 'react';
 import DotButton from '../components/DotButton';
 import GrainOverlay from '../components/GrainOverlay';
+import LoadCurtain from '../components/LoadCurtain';
+import CustomCursor from '../components/CustomCursor';
 import ScrollVideo from '../components/ScrollVideo';
+import PinnedFeatures from '../components/PinnedFeatures';
+import HorizontalCards from '../components/HorizontalCards';
 import { useCountUp } from '../hooks/useCountUp';
 import { useParallax } from '../hooks/useParallax';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -9,34 +13,51 @@ import SplitText from '../components/SplitText';
 import styles from './LandingPage.module.css';
 
 const LandingPage: React.FC = () => {
+  // Problem section refs
   const problemRef = useRef<HTMLElement>(null);
   const problemImgRef = useRef<HTMLDivElement>(null);
-  const betterRef = useRef<HTMLElement>(null);
-  const featuresRef = useRef<HTMLDivElement>(null);
-  const meetRef = useRef<HTMLElement>(null);
-  const meetGridRef = useRef<HTMLDivElement>(null);
+
+  // Stats section refs
   const statsRef = useRef<HTMLElement>(null);
   const statsGridRef = useRef<HTMLDivElement>(null);
+
+  // Planet section ref
   const planetRef = useRef<HTMLElement>(null);
+  const planetImgRef = useRef<HTMLImageElement>(null);
+
+  // Pricing section refs
   const pricingRef = useRef<HTMLElement>(null);
   const pricingGridRef = useRef<HTMLDivElement>(null);
-  const planetImgRef = useRef<HTMLImageElement>(null);
+
+  // CTA refs
   const ctaBgRef = useRef<HTMLImageElement>(null);
   const ctaContentRef = useRef<HTMLDivElement>(null);
+
+  // Footer ref
   const footerRef = useRef<HTMLElement>(null);
+
+  // Counter refs — problem stat
   const statCountRef = useRef<HTMLSpanElement>(null);
   const statDisplay = useCountUp(statCountRef, { end: 196000, duration: 2.5, separator: '.' });
 
+  // Counter refs — stats section (all 4 count up)
+  const stat1Ref = useRef<HTMLDivElement>(null);
+  const stat2Ref = useRef<HTMLDivElement>(null);
+  const stat3Ref = useRef<HTMLDivElement>(null);
+  const stat4Ref = useRef<HTMLDivElement>(null);
+  const stat1Display = useCountUp(stat1Ref, { end: 19.99, duration: 2, separator: '.', decimals: 2, suffix: '€' });
+  const stat2Display = useCountUp(stat2Ref, { end: 5, duration: 1.5, separator: '.', suffix: '+' });
+  const stat3Display = useCountUp(stat3Ref, { end: 70, duration: 2, separator: '.', suffix: '%' });
+  const stat4Display = useCountUp(stat4Ref, { end: 30, duration: 1.8, separator: '.' });
+
+  // Parallax
   useParallax(problemImgRef, -20);
   useParallax(planetImgRef, -15);
   useParallax(ctaBgRef, -10);
 
+  // Scroll reveals
   useScrollReveal(problemRef, { y: 80, duration: 1.2 });
   useScrollReveal(problemImgRef, { x: 60, y: 0, duration: 1.4, delay: 0.2 });
-  useScrollReveal(betterRef, { y: 60, duration: 1 });
-  useScrollReveal(featuresRef, { y: 40, children: true, stagger: 0.2, duration: 0.8 });
-  useScrollReveal(meetRef, { y: 50, duration: 1 });
-  useScrollReveal(meetGridRef, { y: 40, scale: 0.97, children: true, stagger: 0.15, duration: 0.8 });
   useScrollReveal(statsRef, { y: 40, duration: 1 });
   useScrollReveal(statsGridRef, { y: 30, children: true, stagger: 0.12, duration: 0.8 });
   useScrollReveal(planetRef, { y: 60, children: true, stagger: 0.2, duration: 1.2 });
@@ -47,7 +68,9 @@ const LandingPage: React.FC = () => {
 
   return (
     <div>
+      <LoadCurtain />
       <GrainOverlay />
+      <CustomCursor />
 
       {/* ───── Scroll-Scrub Hero (nav + hero + video unified) ───── */}
       <ScrollVideo />
@@ -68,94 +91,32 @@ const LandingPage: React.FC = () => {
           <span className={styles.problemStatLabel}>EXPLOTACIONES EN ANDALUCÍA</span>
         </div>
         <div ref={problemImgRef} className={styles.problemRight}>
-          <img
-            src="/images/olivos-problem.jpeg"
-            alt="Olivos"
-          />
+          <img src="/images/olivos-problem.jpeg" alt="Olivos" />
         </div>
       </section>
 
-      {/* ───── Better (Features) ───── */}
-      <section ref={betterRef} className={styles.better} id="producto">
-        <SplitText as="h2" className={styles.betterHeading} stagger={0.02} duration={0.6}>
-          Datos reales, decisiones inteligentes
-        </SplitText>
-        <p className={styles.betterBody}>
-          AgroSmart conecta fuentes de datos oficiales con inteligencia artificial para
-          ofrecerte recomendaciones personalizadas — sin hardware adicional, desde 19,99€/mes.
-        </p>
-        <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
+      {/* ───── Features (Apple-style pinned scroll) ───── */}
+      <PinnedFeatures
+        id="producto"
+        heading="D a t o s &nbsp; r e a l e s , &nbsp; d e c i s i o n e s<br/>i n t e l i g e n t e s"
+        description="AgroSmart conecta fuentes de datos oficiales con inteligencia artificial para ofrecerte recomendaciones personalizadas — sin hardware adicional, desde 19,99€/mes."
+        features={[
+          { title: 'AEMET + RIA integrados', body: 'Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.' },
+          { title: 'IGME + SISA conectados', body: 'Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos. pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.' },
+          { title: 'IA predictiva incluida', body: 'Motor de inteligencia artificial que analiza tus datos históricos y genera recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.' },
+        ]}
+      />
 
-        <div ref={featuresRef}>
-          <div className={styles.featureRow}>
-            <div className={styles.featureDot} />
-            <span className={styles.featureTitle}>AEMET + RIA integrados</span>
-            <span className={styles.featureBody}>
-              Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de
-              Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.
-            </span>
-          </div>
-
-          <div className={styles.featureRow}>
-            <div className={styles.featureDot} />
-            <span className={styles.featureTitle}>IGME + SISA conectados</span>
-            <span className={styles.featureBody}>
-              Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos.
-              pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.
-            </span>
-          </div>
-
-          <div className={styles.featureRow}>
-            <div className={styles.featureDot} />
-            <span className={styles.featureTitle}>IA predictiva incluida</span>
-            <span className={styles.featureBody}>
-              Motor de inteligencia artificial que analiza tus datos históricos y genera
-              recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ───── Meet (Card Grid) ───── */}
-      <section ref={meetRef} className={styles.meet}>
-        <SplitText as="h2" className={styles.meetHeading} stagger={0.015} duration={0.5}>
-          Conoce AgroSmart
-        </SplitText>
-        <div ref={meetGridRef} className={styles.meetGrid}>
-          <div className={styles.meetRow}>
-            <div className={styles.meetCard}>
-              <h3 className={styles.meetCardTitle}>E T 0 &nbsp; y &nbsp; E T c</h3>
-              <p className={styles.meetCardBody}>
-                Evapotranspiración de referencia y del cultivo calculada diariamente. Sabe
-                exactamente cuánta agua necesitan tus plantas.
-              </p>
-            </div>
-            <div className={styles.meetCard}>
-              <h3 className={styles.meetCardTitle}>N D V I &nbsp; s a t é l i t e</h3>
-              <p className={styles.meetCardBody}>
-                Índice de vegetación por satélite para monitorizar la salud de tus cultivos
-                sin pisar el campo. Actualización cada 5 días.
-              </p>
-            </div>
-          </div>
-          <div className={styles.meetRow}>
-            <div className={styles.meetCard}>
-              <h3 className={styles.meetCardTitle}>V P D &nbsp; y &nbsp; r i e s g o</h3>
-              <p className={styles.meetCardBody}>
-                Déficit de presión de vapor para detectar estrés hídrico y riesgo
-                fitosanitario antes de que sea visible. Alertas automáticas por umbral.
-              </p>
-            </div>
-            <div className={styles.meetCard}>
-              <h3 className={styles.meetCardTitle}>R e c o m e n d a c i o n e s &nbsp; I A</h3>
-              <p className={styles.meetCardBody}>
-                Acciones semanales generadas por IA: cuándo regar, cuándo tratar, cuándo
-                cosechar. Con nivel de confianza y fuente de datos trazable.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ───── Cards (Horizontal scroll) ───── */}
+      <HorizontalCards
+        heading="C o n o c e &nbsp; A g r o S m a r t"
+        cards={[
+          { title: 'E T 0 &nbsp; y &nbsp; E T c', body: 'Evapotranspiración de referencia y del cultivo calculada diariamente. Sabe exactamente cuánta agua necesitan tus plantas.' },
+          { title: 'N D V I &nbsp; s a t é l i t e', body: 'Índice de vegetación por satélite para monitorizar la salud de tus cultivos sin pisar el campo. Actualización cada 5 días.' },
+          { title: 'V P D &nbsp; y &nbsp; r i e s g o', body: 'Déficit de presión de vapor para detectar estrés hídrico y riesgo fitosanitario antes de que sea visible. Alertas automáticas por umbral.' },
+          { title: 'R e c o m e n d a c i o n e s &nbsp; I A', body: 'Acciones semanales generadas por IA: cuándo regar, cuándo tratar, cuándo cosechar. Con nivel de confianza y fuente de datos trazable.' },
+        ]}
+      />
 
       {/* ───── Stats (Dark) ───── */}
       <section ref={statsRef} className={styles.stats}>
@@ -163,10 +124,10 @@ const LandingPage: React.FC = () => {
           Probado en campo
         </SplitText>
         <div ref={statsGridRef} className={styles.statsGrid}>
-          <div className={styles.statCol}><div className={styles.statValue}>19,99€</div><div className={styles.statLabel}>AL MES — SIN HARDWARE</div></div>
-          <div className={styles.statCol}><div className={styles.statValue}>5+</div><div className={styles.statLabel}>FUENTES DE DATOS OFICIALES</div></div>
-          <div className={styles.statCol}><div className={styles.statValue}>70%</div><div className={styles.statLabel}>FINCAS MENORES DE 20 HA</div></div>
-          <div className={styles.statCol}><div className={styles.statValue}>30</div><div className={styles.statLabel}>DÍAS DE PRUEBA GRATUITA</div></div>
+          <div className={styles.statCol}><div ref={stat1Ref} className={styles.statValue}>{stat1Display}</div><div className={styles.statLabel}>AL MES — SIN HARDWARE</div></div>
+          <div className={styles.statCol}><div ref={stat2Ref} className={styles.statValue}>{stat2Display}</div><div className={styles.statLabel}>FUENTES DE DATOS OFICIALES</div></div>
+          <div className={styles.statCol}><div ref={stat3Ref} className={styles.statValue}>{stat3Display}</div><div className={styles.statLabel}>FINCAS MENORES DE 20 HA</div></div>
+          <div className={styles.statCol}><div ref={stat4Ref} className={styles.statValue}>{stat4Display}</div><div className={styles.statLabel}>DÍAS DE PRUEBA GRATUITA</div></div>
         </div>
       </section>
 
@@ -178,12 +139,8 @@ const LandingPage: React.FC = () => {
           en español, y a un precio que cabe en cualquier explotación.
         </p>
         <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
-        <img
-          ref={planetImgRef}
-          className={styles.planetImage}
-          src="https://images.unsplash.com/photo-1501004318855-cddc70ca1930?w=1440&h=400&fit=crop"
-          alt="Olive grove"
-        />
+        <img ref={planetImgRef} className={styles.planetImage}
+          src="https://images.unsplash.com/photo-1501004318855-cddc70ca1930?w=1440&h=400&fit=crop" alt="Olive grove" />
         <p className={styles.planetQuote}>
           &ldquo;Si me ahorra un solo tratamiento mal puesto al año, ya merece la pena.&rdquo;
         </p>
@@ -223,13 +180,7 @@ const LandingPage: React.FC = () => {
 
       {/* ───── CTA ───── */}
       <section className={styles.cta}>
-        <img
-          ref={ctaBgRef}
-          className={styles.ctaBg}
-          src="/images/cta-bg.jpeg"
-          alt=""
-          aria-hidden="true"
-        />
+        <img ref={ctaBgRef} className={styles.ctaBg} src="/images/cta-bg.jpeg" alt="" aria-hidden="true" />
         <div ref={ctaContentRef} className={styles.ctaContent}>
           <h2 className={styles.ctaHeading}>N o &nbsp; h a y &nbsp; m u c h a s &nbsp; o p o r t u n i d a d e s<br />d e &nbsp; s e r &nbsp; e l &nbsp; p r i m e r o .</h2>
           <h2 className={styles.ctaHeading}>D e &nbsp; l i d e r a r , &nbsp; n o &nbsp; s e g u i r .</h2>

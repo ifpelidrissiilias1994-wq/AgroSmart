@@ -1,0 +1,66 @@
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 64px;
+  overflow: hidden;
+}
+
+.heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 48px;
+  letter-spacing: 8px;
+  color: var(--fm-text);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.track {
+  display: flex;
+  gap: 24px;
+  will-change: transform;
+}
+
+.card {
+  flex-shrink: 0;
+  width: 420px;
+  background: var(--fm-surface);
+  border: 1px solid var(--fm-sand);
+  border-radius: 2px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-style: italic;
+  letter-spacing: 4px;
+  color: var(--fm-text);
+}
+
+.cardBody {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--fm-muted);
+  line-height: 1.7;
+}
+
+.cardIndex {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--fm-sand);
+  margin-bottom: 8px;
+}
