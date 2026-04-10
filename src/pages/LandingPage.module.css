@@ -319,67 +319,88 @@
   color: var(--fm-white-50);
 }
 
-/* ───── Planet (Quote) ───── */
+/* ───── Planet (Quote) — full-bleed bg image with gradient overlays ───── */
 .planet {
-  padding: 160px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.planetBgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.planetTop {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  overflow: hidden;
+  justify-content: center;
+  gap: 20px;
+  padding: 80px 48px;
+  min-height: 45vh;
+  background: linear-gradient(to bottom, rgba(26,26,20,0.9) 0%, transparent 100%);
+}
+
+.planetBottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 60px 48px;
+  min-height: 45vh;
+  background: linear-gradient(to top, rgba(26,26,20,0.9) 0%, transparent 100%);
 }
 
 .planetHeading {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
-  font-size: 42px;
-  letter-spacing: 6px;
-  color: var(--fm-text);
+  font-size: 32px;
+  letter-spacing: 3px;
+  color: var(--fm-white);
   text-align: center;
-  max-width: 1180px;
+  max-width: 800px;
 }
 
 .planetBody {
   font-family: 'DM Sans', sans-serif;
-  font-size: 17px;
-  color: var(--fm-muted);
+  font-size: 16px;
+  color: var(--fm-white-70);
   line-height: 1.8;
   text-align: center;
-  max-width: 680px;
-}
-
-.planetImageWrap {
-  width: 100%;
-  overflow: hidden;
-}
-
-.planetImage {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  clip-path: inset(15% 20% 15% 20%);
-  transition: clip-path 0.01s;
+  max-width: 560px;
 }
 
 .planetQuote {
   font-family: 'Playfair Display', serif;
-  font-size: 32px;
+  font-size: 28px;
   font-style: italic;
-  color: var(--fm-text);
+  font-weight: 400;
+  color: var(--fm-white);
   text-align: center;
-  max-width: 900px;
+  max-width: 700px;
+  line-height: 1.4;
 }
 
 .planetAuthor {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  color: var(--fm-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--fm-white-50);
 }
 
-/* ───── Pricing ───── */
+/* ───── Pricing (dark bg, card shadows) ───── */
 .pricing {
-  background: var(--fm-surface);
-  padding: 160px 64px;
+  background: var(--fm-soil);
+  padding: 80px 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -389,58 +410,77 @@
 .pricingHeading {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
-  font-size: 48px;
-  letter-spacing: 8px;
-  color: var(--fm-text);
+  font-size: 36px;
+  letter-spacing: 6px;
+  color: var(--fm-white);
 }
 
 .pricingGrid {
   display: flex;
-  gap: 1px;
-  background: var(--fm-sand);
+  gap: 24px;
   justify-content: center;
   width: 100%;
+  max-width: 880px;
 }
 
 .planCard {
   background: var(--fm-bg);
-  padding: 48px;
-  width: 480px;
+  padding: 32px;
+  flex: 1;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   position: relative;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.7);
 }
 
+.planPremium {
+  border: 2px solid var(--fm-forest);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.7);
+}
 
-.planBasic {
-  height: 562px;
+.premBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: var(--fm-forest);
+  color: var(--fm-white);
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  align-self: flex-start;
 }
 
 .planTag {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 3px;
+  font-size: 10px;
+  letter-spacing: 4px;
   color: var(--fm-forest);
 }
 
 .planPrice {
   font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-size: 30px;
   font-style: italic;
+  letter-spacing: 1px;
   color: var(--fm-text);
 }
 
 .planDesc {
   font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--fm-muted);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .planFeat {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--fm-text);
 }
 
@@ -448,10 +488,10 @@
   color: var(--fm-muted);
 }
 
-/* ───── CTA ───── */
+/* ───── CTA (full-bleed olive grove image) ───── */
 .cta {
   position: relative;
-  height: 500px;
+  height: 600px;
   background: var(--fm-soil);
   overflow: hidden;
 }
@@ -462,7 +502,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.45;
+  opacity: 0.4;
 }
 
 .ctaContent {
@@ -472,40 +512,40 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 60px 120px;
+  gap: 24px;
+  padding: 60px 48px;
 }
 
 .ctaHeading {
   font-family: 'Playfair Display', serif;
   font-weight: 300;
-  font-size: 32px;
-  font-style: italic;
-  letter-spacing: 4px;
+  font-size: 28px;
+  letter-spacing: 3px;
   color: var(--fm-white);
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.2;
+  max-width: 760px;
 }
 
 .ctaBody {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--fm-white-70);
   line-height: 1.7;
   text-align: center;
-  max-width: 500px;
+  max-width: 520px;
 }
 
 .ctaButtons {
   display: flex;
-  gap: 24px;
+  gap: 32px;
   margin-top: 8px;
 }
 
 .ctaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   text-decoration: none;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
@@ -513,18 +553,33 @@
   font-weight: 500;
   letter-spacing: 2px;
   color: var(--fm-white);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  transition: opacity 0.3s ease;
+}
+
+.ctaBtn:hover {
+  opacity: 0.85;
+}
+
+.ctaBtnPrimary {
+  background: var(--fm-forest);
+}
+
+.ctaBtnOutline {
+  border: 1px solid var(--fm-white-50);
 }
 
 .ctaDotGreen {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--fm-forest-lt);
 }
 
 .ctaDotBeige {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--fm-beige-dot);
 }
@@ -601,4 +656,83 @@
 .problemLeft, .problemRight, .featureRow,
 .meetCard, .statCol, .planetImage, .ctaContent {
   will-change: transform, opacity;
+}
+
+/* ───── Responsive: Tablet ───── */
+@media (max-width: 1024px) {
+  .heroH1 { font-size: 80px; }
+  .hero { padding: 120px 48px 60px; }
+
+  .problem { flex-direction: column; padding: 100px 48px; gap: 48px; }
+  .problemRight { width: 100%; height: 300px; }
+  .problemStat { font-size: 80px; }
+
+  .better { padding: 100px 48px; }
+  .betterHeading { font-size: 36px; }
+  .featureRow { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .featureTitle { width: auto; }
+
+  .meet { padding: 100px 48px; }
+  .meetHeading { font-size: 36px; }
+  .meetRow { flex-direction: column; }
+
+  .stats { padding: 80px 32px; }
+  .statsHeading { font-size: 36px; }
+  .statValue { font-size: 48px; }
+  .statCol { padding: 24px 16px; }
+
+  .planetHeading { font-size: 32px; }
+  .planetQuote { font-size: 28px; max-width: 600px; }
+
+  .pricing { padding: 80px 32px; }
+  .pricingHeading { font-size: 36px; letter-spacing: 6px; }
+  .pricingGrid { flex-direction: column; align-items: center; }
+  .planCard { max-width: 500px; width: 100%; }
+
+  .ctaHeading { font-size: 28px; }
+  .ctaBody { font-size: 16px; }
+  .ctaButtons { gap: 24px; }
+  .ctaBtn { font-size: 12px; padding: 12px 24px; }
+
+  .footer { flex-wrap: wrap; padding: 60px 48px; }
+}
+
+/* ───── Responsive: Mobile ───── */
+@media (max-width: 768px) {
+  .heroH1 { font-size: 48px; }
+  .hero { padding: 100px 20px 48px; }
+  .heroDesc { font-size: 16px; }
+
+  .problem { padding: 64px 20px; }
+  .problemHeading { font-size: 28px; }
+  .problemStat { font-size: 56px; }
+
+  .better { padding: 64px 20px; }
+  .betterHeading { font-size: 28px; }
+
+  .meet { padding: 64px 20px; }
+  .meetCard { padding: 24px; }
+
+  .stats { padding: 48px 20px; }
+  .statsGrid { flex-direction: column; }
+  .statValue { font-size: 36px; }
+  .statCol + .statCol::before { display: none; }
+
+  .planetTop { padding: 64px 20px; }
+  .planetBottom { padding: 48px 20px; }
+  .planetHeading { font-size: 24px; }
+  .planetBody { font-size: 16px; }
+  .planetQuote { font-size: 22px; }
+
+  .pricing { padding: 48px 20px; }
+  .pricingHeading { font-size: 28px; letter-spacing: 4px; }
+  .planCard { padding: 32px; }
+  .planPrice { font-size: 28px; }
+
+  .ctaContent { padding: 48px 20px; }
+  .ctaHeading { font-size: 22px; }
+  .ctaBody { font-size: 14px; }
+  .ctaButtons { flex-direction: column; gap: 16px; }
+
+  .footer { flex-direction: column; padding: 48px 20px; }
 }

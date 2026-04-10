@@ -234,25 +234,33 @@ const LandingPage: React.FC = () => {
 
       {/* ───── Planet (Quote) ───── */}
       <section ref={planetRef} className={styles.planet} id="ciencia">
-        <h2 className={styles.planetHeading}>P a r a &nbsp; t u &nbsp; f i n c a . &nbsp; P a r a &nbsp; A n d a l u c í a .</h2>
-        <p className={styles.planetBody}>
-          Una plataforma diseñada para el agricultor andaluz — con datos locales,
-          en español, y a un precio que cabe en cualquier explotación.
-        </p>
-        <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
-        <img ref={planetImgRef} className={styles.planetImage}
-          src="https://images.unsplash.com/photo-1501004318855-cddc70ca1930?w=1440&h=400&fit=crop" alt="Olive grove" />
-        <p className={styles.planetQuote}>
-          &ldquo;Si me ahorra un solo tratamiento mal puesto al año, ya merece la pena.&rdquo;
-        </p>
-        <span className={styles.planetAuthor}>Antonio M., olivicultor, Jaén</span>
+        <img ref={planetImgRef} className={styles.planetBgImg}
+          src="/images/planet-andalucia.png" alt="Andalusian countryside at sunset" />
+
+        {/* Top half — heading + body + CTA */}
+        <div className={styles.planetTop}>
+          <h2 className={styles.planetHeading}>P a r a &nbsp; t u &nbsp; f i n c a . &nbsp; P a r a &nbsp; A n d a l u c í a .</h2>
+          <p className={styles.planetBody}>
+            Una plataforma diseñada para el agricultor andaluz — con datos locales,
+            en español, y a un precio que cabe en cualquier explotación.
+          </p>
+          <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
+        </div>
+
+        {/* Bottom half — quote + author */}
+        <div className={styles.planetBottom}>
+          <p className={styles.planetQuote}>
+            &ldquo;Si me ahorra un solo tratamiento mal puesto al año, ya merece la pena.&rdquo;
+          </p>
+          <span className={styles.planetAuthor}>Antonio M., olivicultor, Jaén</span>
+        </div>
       </section>
 
       {/* ───── Pricing ───── */}
       <section ref={pricingRef} className={styles.pricing} id="precios">
         <h2 className={styles.pricingHeading}>E l i g e &nbsp; t u &nbsp; p l a n</h2>
         <div ref={pricingGridRef} className={styles.pricingGrid}>
-          <div className={`${styles.planCard} ${styles.planBasic}`}>
+          <div className={styles.planCard}>
             <span className={styles.planTag}>PLAN BÁSICO</span>
             <div className={styles.planPrice}>Gratuito</div>
             <div className={styles.planDesc}>Para empezar a conocer tus datos</div>
@@ -263,7 +271,8 @@ const LandingPage: React.FC = () => {
             <div className={`${styles.planFeat} ${styles.planFeatOff}`}>✗  Sin exportación de datos</div>
             <DotButton variant="outline" href="/register">EMPEZAR GRATIS</DotButton>
           </div>
-          <div className={styles.planCard}>
+          <div className={`${styles.planCard} ${styles.planPremium}`}>
+            <span className={styles.premBadge}>RECOMENDADO</span>
             <span className={styles.planTag}>PLAN PREMIUM</span>
             <div className={styles.planPrice}>19,99 €/mes</div>
             <div className={styles.planDesc}>Todo lo que necesitas para optimizar tu finca</div>
@@ -281,17 +290,21 @@ const LandingPage: React.FC = () => {
 
       {/* ───── CTA ───── */}
       <section className={styles.cta}>
-        <img ref={ctaBgRef} className={styles.ctaBg} src="/images/cta-bg.jpeg" alt="" aria-hidden="true" />
+        <img ref={ctaBgRef} className={styles.ctaBg} src="/images/cta-olives.png" alt="" aria-hidden="true" />
         <div ref={ctaContentRef} className={styles.ctaContent}>
-          <h2 className={styles.ctaHeading}>N o &nbsp; h a y &nbsp; m u c h a s &nbsp; o p o r t u n i d a d e s<br />d e &nbsp; s e r &nbsp; e l &nbsp; p r i m e r o .</h2>
+          <h2 className={styles.ctaHeading}>N o &nbsp; h a y &nbsp; m u c h a s &nbsp; o p o r t u n i d a d e s &nbsp; d e &nbsp; s e r &nbsp; e l &nbsp; p r i m e r o .</h2>
           <h2 className={styles.ctaHeading}>D e &nbsp; l i d e r a r , &nbsp; n o &nbsp; s e g u i r .</h2>
           <p className={styles.ctaBody}>
             AgroSmart Andalucía está abierto para agricultores que quieren tomar decisiones
             basadas en datos reales. 30 días gratuitos, sin tarjeta de crédito.
           </p>
           <div className={styles.ctaButtons}>
-            <a href="/register" className={styles.ctaBtn}><span className={styles.ctaDotGreen} /><span>PRUEBA GRATUITA</span><span className={styles.ctaDotGreen} /></a>
-            <a href="#" className={styles.ctaBtn}><span className={styles.ctaDotBeige} /><span>CONTACTAR</span><span className={styles.ctaDotBeige} /></a>
+            <a href="/register" className={`${styles.ctaBtn} ${styles.ctaBtnPrimary}`}>
+              <span className={styles.ctaDotGreen} /><span>PRUEBA GRATUITA</span><span className={styles.ctaDotGreen} />
+            </a>
+            <a href="#" className={`${styles.ctaBtn} ${styles.ctaBtnOutline}`}>
+              <span className={styles.ctaDotBeige} /><span>CONTACTAR</span><span className={styles.ctaDotBeige} />
+            </a>
           </div>
         </div>
       </section>

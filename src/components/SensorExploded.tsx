@@ -159,6 +159,7 @@ const SensorExploded: React.FC = () => {
   const labelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const progressFillRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const specsRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
@@ -179,12 +180,18 @@ const SensorExploded: React.FC = () => {
         pinSpacing: false,
       });
 
-      // Header starts hidden, fades in at the end of scroll (Phase 3)
+      // Header + specs start hidden, fade in together at ~70% scroll
       if (headerRef.current) {
         gsap.fromTo(headerRef.current,
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, ease: 'power2.out',
-            scrollTrigger: { trigger: section, start: '75% top', end: '90% top', scrub: 0.5 } });
+            scrollTrigger: { trigger: section, start: '65% top', end: '78% top', scrub: 0.5 } });
+      }
+      if (specsRef.current) {
+        gsap.fromTo(specsRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, ease: 'power2.out',
+            scrollTrigger: { trigger: section, start: '65% top', end: '78% top', scrub: 0.5 } });
       }
 
       // Labels: fade in during Phase 1, fade out during Phase 2
@@ -317,7 +324,7 @@ const SensorExploded: React.FC = () => {
           <span className={styles.statusPercent}>{displayProgress}%</span>
         </div>
 
-        <div className={styles.specsStrip}>
+        <div ref={specsRef} className={styles.specsStrip} style={{ opacity: 0 }}>
           <div className={styles.spec}><span className={styles.specValue}>IP67</span><span className={styles.specLabel}>PROTECCIÓN</span></div>
           <div className={styles.specDivider} />
           <div className={styles.spec}><span className={styles.specValue}>LoRa</span><span className={styles.specLabel}>CONECTIVIDAD</span></div>
