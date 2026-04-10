@@ -106,7 +106,7 @@ const ParcelasPage: React.FC = () => {
     setDeleting(false);
   };
 
-  const statusBadge = (p: Parcel) => {
+  const statusBadge = (_p: Parcel) => {
     // Simple heuristic based on NDVI or other fields
     return <span className={styles.statusNormal}>Normal</span>;
   };

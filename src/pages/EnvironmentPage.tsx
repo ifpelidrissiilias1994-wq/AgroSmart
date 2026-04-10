@@ -124,14 +124,14 @@ const EnvironmentPage: React.FC = () => {
                     <span className={styles.metricLabel}>DISTANCIA</span>
                     <span className={styles.metricValue}>{fmt((airQuality as Record<string, unknown>).distance_km)} km</span>
                   </div>
-                  {airQuality.data && typeof airQuality.data === 'object' &&
+                  {airQuality.data && typeof airQuality.data === 'object' ? (
                     Object.entries(airQuality.data as Record<string, unknown>).map(([k, v]) => (
                       <div key={k} className={styles.metric}>
                         <span className={styles.metricLabel}>{k.toUpperCase()}</span>
-                        <span className={styles.metricValue}>{fmt(v)}</span>
+                        <span className={styles.metricValue}>{fmt(v as number | string | null | undefined)}</span>
                       </div>
                     ))
-                  }
+                  ) : null}
                 </div>
               ) : (
                 <p className={styles.empty}>Sin datos de calidad del aire disponibles.</p>
