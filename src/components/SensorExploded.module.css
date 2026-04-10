@@ -1,0 +1,341 @@
+/* ═══════════════════════════════════════════════
+   SensorExploded — 3D Blender Model + Parallax
+   Scroll-driven assembly/disassembly with R3F
+   ═══════════════════════════════════════════════ */
+
+.section {
+  height: 400vh;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: var(--fm-soil);
+}
+
+/* ─── Blueprint Grid Background ─── */
+.blueprintGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(45, 90, 27, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 90, 27, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(45, 90, 27, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 90, 27, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  pointer-events: none;
+  will-change: background-position;
+}
+
+.blueprintVignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    transparent 30%,
+    rgba(26, 26, 20, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Corner Registration Marks ─── */
+.cornerMark {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cornerMark::before,
+.cornerMark::after {
+  content: '';
+  position: absolute;
+  background: rgba(45, 90, 27, 0.25);
+}
+
+.cornerMark::before { width: 1px; height: 100%; }
+.cornerMark::after  { width: 100%; height: 1px; }
+
+.cornerTL { top: 24px; left: 24px; }
+.cornerTL::before { left: 0; top: 0; }
+.cornerTL::after  { left: 0; top: 0; }
+
+.cornerTR { top: 24px; right: 24px; }
+.cornerTR::before { right: 0; top: 0; }
+.cornerTR::after  { right: 0; top: 0; }
+
+.cornerBL { bottom: 24px; left: 24px; }
+.cornerBL::before { left: 0; bottom: 0; }
+.cornerBL::after  { left: 0; bottom: 0; }
+
+.cornerBR { bottom: 24px; right: 24px; }
+.cornerBR::before { right: 0; bottom: 0; }
+.cornerBR::after  { right: 0; bottom: 0; }
+
+/* ─── Header ─── */
+.header {
+  position: absolute;
+  top: 48px;
+  left: 64px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--fm-forest-lt);
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 52px;
+  letter-spacing: 6px;
+  color: var(--fm-white);
+  line-height: 1;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--fm-white-50);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ─── Three.js Canvas ─── */
+.canvasWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* ─── Labels Layer (HTML overlay on top of Canvas) ─── */
+.labelsLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  will-change: transform, opacity;
+}
+
+/* Distribute labels vertically across the viewport */
+.label:nth-child(1) { top: 10%; }
+.label:nth-child(2) { top: 20%; }
+.label:nth-child(3) { top: 32%; }
+.label:nth-child(4) { top: 44%; }
+.label:nth-child(5) { top: 56%; }
+.label:nth-child(6) { top: 68%; }
+.label:nth-child(7) { top: 80%; }
+
+.labelLeft {
+  right: 55%;
+  flex-direction: row-reverse;
+}
+
+.labelRight {
+  left: 55%;
+}
+
+.labelLine {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(74, 124, 47, 0.6));
+}
+
+.labelLeft .labelLine {
+  background: linear-gradient(90deg, rgba(74, 124, 47, 0.6), transparent);
+}
+
+.labelContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.labelLeft .labelContent {
+  text-align: right;
+}
+
+.labelNumber {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--fm-forest-lt);
+}
+
+.labelName {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--fm-white);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.labelDesc {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--fm-white-50);
+  white-space: nowrap;
+}
+
+/* ─── Progress Track ─── */
+.progressTrack {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 200px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+  z-index: 10;
+}
+
+.progressFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, var(--fm-forest-lt), var(--fm-forest));
+  border-radius: 1px;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.progressDots {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.progressDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressDotActive {
+  background: var(--fm-forest-lt);
+  border-color: var(--fm-forest-lt);
+  box-shadow: 0 0 8px rgba(74, 124, 47, 0.5);
+}
+
+/* ─── Status Bar ─── */
+.statusBar {
+  position: absolute;
+  bottom: 96px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+}
+
+.statusLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--fm-forest-lt);
+}
+
+.statusPercent {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--fm-white);
+  min-width: 56px;
+  text-align: right;
+}
+
+/* ─── Specs Strip ─── */
+.specsStrip {
+  position: absolute;
+  bottom: 32px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  z-index: 10;
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.specValue {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: var(--fm-white);
+  letter-spacing: 1px;
+}
+
+.specLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--fm-white-50);
+}
+
+.specDivider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255,255,255,0.1);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .header { left: 32px; top: 32px; }
+  .title  { font-size: 36px; letter-spacing: 3px; }
+  .labelName { font-size: 13px; }
+  .labelDesc { font-size: 8px; }
+  .specsStrip { left: 32px; gap: 16px; }
+  .statusBar  { right: 32px; }
+}
+
+@media (max-width: 768px) {
+  .section { height: 320vh; }
+  .header  { left: 20px; top: 24px; }
+  .title   { font-size: 28px; letter-spacing: 2px; }
+  .subtitle { font-size: 13px; max-width: 220px; }
+  .labelsLayer { display: none; }
+  .progressTrack { right: 16px; height: 120px; }
+  .specsStrip { left: 20px; bottom: 20px; gap: 12px; }
+  .specValue  { font-size: 14px; }
+  .specLabel  { font-size: 7px; }
+  .statusBar  { right: 20px; bottom: 64px; }
+  .statusPercent { font-size: 22px; }
+}

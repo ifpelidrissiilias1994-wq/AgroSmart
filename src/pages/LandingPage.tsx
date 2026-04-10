@@ -1,21 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import DotButton from '../components/DotButton';
 import GrainOverlay from '../components/GrainOverlay';
 import LoadCurtain from '../components/LoadCurtain';
 import CustomCursor from '../components/CustomCursor';
 import ScrollVideo from '../components/ScrollVideo';
-import PinnedFeatures from '../components/PinnedFeatures';
-import HorizontalCards from '../components/HorizontalCards';
 import { useCountUp } from '../hooks/useCountUp';
 import { useParallax } from '../hooks/useParallax';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import SplitText from '../components/SplitText';
+import SensorExploded from '../components/SensorExploded';
 import styles from './LandingPage.module.css';
 
 const LandingPage: React.FC = () => {
   // Problem section refs
   const problemRef = useRef<HTMLElement>(null);
   const problemImgRef = useRef<HTMLDivElement>(null);
+
+  // Features section refs
+  const betterRef = useRef<HTMLElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+
+  // Meet section refs
+  const meetRef = useRef<HTMLElement>(null);
+  const meetGridRef = useRef<HTMLDivElement>(null);
 
   // Stats section refs
   const statsRef = useRef<HTMLElement>(null);
@@ -58,6 +69,10 @@ const LandingPage: React.FC = () => {
   // Scroll reveals
   useScrollReveal(problemRef, { y: 80, duration: 1.2 });
   useScrollReveal(problemImgRef, { x: 60, y: 0, duration: 1.4, delay: 0.2 });
+  useScrollReveal(betterRef, { y: 60, duration: 1 });
+  useScrollReveal(featuresRef, { y: 40, children: true, stagger: 0.2, duration: 0.8 });
+  useScrollReveal(meetRef, { y: 50, duration: 1 });
+  useScrollReveal(meetGridRef, { y: 40, scale: 0.97, children: true, stagger: 0.15, duration: 0.8 });
   useScrollReveal(statsRef, { y: 40, duration: 1 });
   useScrollReveal(statsGridRef, { y: 30, children: true, stagger: 0.12, duration: 0.8 });
   useScrollReveal(planetRef, { y: 60, children: true, stagger: 0.2, duration: 1.2 });
@@ -65,6 +80,32 @@ const LandingPage: React.FC = () => {
   useScrollReveal(pricingGridRef, { y: 40, children: true, stagger: 0.2, duration: 0.9 });
   useScrollReveal(ctaContentRef, { y: 30, duration: 1.2 });
   useScrollReveal(footerRef, { y: 30, children: true, stagger: 0.1, duration: 0.8 });
+
+  // Stats divider lines draw in
+  useEffect(() => {
+    const grid = statsGridRef.current;
+    if (!grid) return;
+    const trigger = ScrollTrigger.create({
+      trigger: grid,
+      start: 'top 80%',
+      onEnter: () => {
+        grid.querySelectorAll(':scope > *:not(:first-child)').forEach(el => el.classList.add('lineVisible'));
+      },
+    });
+    return () => trigger.kill();
+  }, []);
+
+  // Clip-path reveal for planet image
+  useEffect(() => {
+    const img = planetImgRef.current;
+    if (!img) return;
+    const tween = gsap.to(img, {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      ease: 'power2.out',
+      scrollTrigger: { trigger: img, start: 'top 85%', end: 'top 40%', scrub: 0.5 },
+    });
+    return () => { tween.scrollTrigger?.kill(); tween.kill(); };
+  }, []);
 
   return (
     <div>
@@ -95,28 +136,88 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* ───── Features (Apple-style pinned scroll) ───── */}
-      <PinnedFeatures
-        id="producto"
-        heading="D a t o s &nbsp; r e a l e s , &nbsp; d e c i s i o n e s<br/>i n t e l i g e n t e s"
-        description="AgroSmart conecta fuentes de datos oficiales con inteligencia artificial para ofrecerte recomendaciones personalizadas — sin hardware adicional, desde 19,99€/mes."
-        features={[
-          { title: 'AEMET + RIA integrados', body: 'Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.' },
-          { title: 'IGME + SISA conectados', body: 'Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos. pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.' },
-          { title: 'IA predictiva incluida', body: 'Motor de inteligencia artificial que analiza tus datos históricos y genera recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.' },
-        ]}
-      />
+      {/* ───── Better (Features) ───── */}
+      <section ref={betterRef} className={styles.better} id="producto">
+        <SplitText as="h2" className={styles.betterHeading} stagger={0.02} duration={0.6}>
+          Datos reales, decisiones inteligentes
+        </SplitText>
+        <p className={styles.betterBody}>
+          AgroSmart conecta fuentes de datos oficiales con inteligencia artificial para
+          ofrecerte recomendaciones personalizadas — sin hardware adicional, desde 19,99€/mes.
+        </p>
+        <DotButton variant="outline" href="/register">EMPIEZA GRATIS</DotButton>
 
-      {/* ───── Cards (Horizontal scroll) ───── */}
-      <HorizontalCards
-        heading="C o n o c e &nbsp; A g r o S m a r t"
-        cards={[
-          { title: 'E T 0 &nbsp; y &nbsp; E T c', body: 'Evapotranspiración de referencia y del cultivo calculada diariamente. Sabe exactamente cuánta agua necesitan tus plantas.' },
-          { title: 'N D V I &nbsp; s a t é l i t e', body: 'Índice de vegetación por satélite para monitorizar la salud de tus cultivos sin pisar el campo. Actualización cada 5 días.' },
-          { title: 'V P D &nbsp; y &nbsp; r i e s g o', body: 'Déficit de presión de vapor para detectar estrés hídrico y riesgo fitosanitario antes de que sea visible. Alertas automáticas por umbral.' },
-          { title: 'R e c o m e n d a c i o n e s &nbsp; I A', body: 'Acciones semanales generadas por IA: cuándo regar, cuándo tratar, cuándo cosechar. Con nivel de confianza y fuente de datos trazable.' },
-        ]}
-      />
+        <div ref={featuresRef}>
+          <div className={styles.featureRow}>
+            <div className={styles.featureDot} />
+            <span className={styles.featureTitle}>AEMET + RIA integrados</span>
+            <span className={styles.featureBody}>
+              Datos meteorológicos en tiempo real de la Agencia Estatal y la Red de
+              Información Agroclimática. ET0, precipitación, temperatura y humedad para tu zona exacta.
+            </span>
+          </div>
+          <div className={styles.featureRow}>
+            <div className={styles.featureDot} />
+            <span className={styles.featureTitle}>IGME + SISA conectados</span>
+            <span className={styles.featureBody}>
+              Análisis de suelo del Instituto Geológico y el Sistema de Información de Suelos.
+              pH, textura, capacidad hídrica y riesgo de erosión de tu parcela.
+            </span>
+          </div>
+          <div className={styles.featureRow}>
+            <div className={styles.featureDot} />
+            <span className={styles.featureTitle}>IA predictiva incluida</span>
+            <span className={styles.featureBody}>
+              Motor de inteligencia artificial que analiza tus datos históricos y genera
+              recomendaciones de riego, tratamiento fitosanitario y ventana de cosecha con nivel de confianza.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── Meet (Card Grid) ───── */}
+      <section ref={meetRef} className={styles.meet}>
+        <SplitText as="h2" className={styles.meetHeading} stagger={0.015} duration={0.5}>
+          Conoce AgroSmart
+        </SplitText>
+        <div ref={meetGridRef} className={styles.meetGrid}>
+          <div className={styles.meetRow}>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>E T 0 &nbsp; y &nbsp; E T c</h3>
+              <p className={styles.meetCardBody}>
+                Evapotranspiración de referencia y del cultivo calculada diariamente. Sabe
+                exactamente cuánta agua necesitan tus plantas.
+              </p>
+            </div>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>N D V I &nbsp; s a t é l i t e</h3>
+              <p className={styles.meetCardBody}>
+                Índice de vegetación por satélite para monitorizar la salud de tus cultivos
+                sin pisar el campo. Actualización cada 5 días.
+              </p>
+            </div>
+          </div>
+          <div className={styles.meetRow}>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>V P D &nbsp; y &nbsp; r i e s g o</h3>
+              <p className={styles.meetCardBody}>
+                Déficit de presión de vapor para detectar estrés hídrico y riesgo
+                fitosanitario antes de que sea visible. Alertas automáticas por umbral.
+              </p>
+            </div>
+            <div className={styles.meetCard}>
+              <h3 className={styles.meetCardTitle}>R e c o m e n d a c i o n e s &nbsp; I A</h3>
+              <p className={styles.meetCardBody}>
+                Acciones semanales generadas por IA: cuándo regar, cuándo tratar, cuándo
+                cosechar. Con nivel de confianza y fuente de datos trazable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── Sensor Exploded View (Parallax Assembly) ───── */}
+      <SensorExploded />
 
       {/* ───── Stats (Dark) ───── */}
       <section ref={statsRef} className={styles.stats}>

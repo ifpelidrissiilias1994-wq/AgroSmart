@@ -139,6 +139,12 @@
   padding-top: 32px;
   border-top: 1px solid var(--fm-sand);
   width: 100%;
+  transition: padding-left 0.4s ease;
+  cursor: default;
+}
+
+.featureRow:hover {
+  padding-left: 8px;
 }
 
 .featureDot {
@@ -147,6 +153,12 @@
   border-radius: 50%;
   background: var(--fm-forest);
   flex-shrink: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.featureRow:hover .featureDot {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 6px rgba(45, 90, 27, 0.15);
 }
 
 .featureTitle {
@@ -156,6 +168,27 @@
   color: var(--fm-text);
   width: 280px;
   flex-shrink: 0;
+  transition: transform 0.4s ease;
+  position: relative;
+}
+
+.featureTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--fm-forest);
+  transition: width 0.4s ease;
+}
+
+.featureRow:hover .featureTitle {
+  transform: translateX(8px);
+}
+
+.featureRow:hover .featureTitle::after {
+  width: 100%;
 }
 
 .featureBody {
@@ -251,10 +284,24 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
 }
 
-.statCol + .statCol {
-  border-left: 1px solid rgba(255,255,255,0.1);
+.statCol + .statCol::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 0;
+  background: rgba(255,255,255,0.15);
+  transition: height 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.statsGrid:hover .statCol + .statCol::before,
+.statCol + .statCol:global(.lineVisible)::before {
+  height: 80%;
 }
 
 .statValue {
@@ -301,10 +348,17 @@
   max-width: 680px;
 }
 
+.planetImageWrap {
+  width: 100%;
+  overflow: hidden;
+}
+
 .planetImage {
   width: 100%;
   height: 400px;
   object-fit: cover;
+  clip-path: inset(15% 20% 15% 20%);
+  transition: clip-path 0.01s;
 }
 
 .planetQuote {
@@ -355,7 +409,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
 }
+
 
 .planBasic {
   height: 562px;

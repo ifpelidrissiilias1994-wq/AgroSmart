@@ -9,11 +9,12 @@
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: color 0.35s ease, background-size 0.4s ease, opacity 0.2s ease;
+  position: relative;
 }
 
 .button:hover {
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .dot {
@@ -21,6 +22,11 @@
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+
+.button:hover .dot {
+  transform: rotate(90deg) scale(1.15);
 }
 
 /* Primary variant */
@@ -31,20 +37,37 @@
   border-radius: 0;
 }
 
+.primary:hover {
+  background: var(--fm-soil);
+}
+
 .primary .dot {
   background: var(--fm-beige-dot);
 }
 
-/* Outline variant */
+/* Outline variant — fill from left on hover */
 .outline {
-  background: transparent;
   color: var(--fm-text);
   padding: 10px 20px;
   border: 1px solid var(--fm-sand);
+  background: linear-gradient(to right, var(--fm-forest) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.4s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.outline:hover {
+  background-position: left;
+  color: var(--fm-white);
+  border-color: var(--fm-forest);
 }
 
 .outline .dot {
   background: var(--fm-beige-dot);
+}
+
+.outline:hover .dot {
+  background: rgba(255,255,255,0.5);
 }
 
 /* Ghost variant */
