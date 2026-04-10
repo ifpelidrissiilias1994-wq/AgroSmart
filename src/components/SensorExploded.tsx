@@ -158,6 +158,7 @@ const SensorExploded: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<(HTMLDivElement | null)[]>([]);
   const progressFillRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
 
@@ -190,6 +191,15 @@ const SensorExploded: React.FC = () => {
           { opacity: 0, y: 30 },
           { opacity: 1, y: 0, duration: 0.4, delay: 0.15, ease: 'power2.out',
             scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none reverse' } });
+      }
+
+      // Header fade out + slide up on scroll so it doesn't cover the model/labels
+      if (headerRef.current) {
+        gsap.to(headerRef.current, {
+          opacity: 0, y: -40,
+          ease: 'power2.in',
+          scrollTrigger: { trigger: section, start: '3% top', end: '12% top', scrub: 0.5 },
+        });
       }
 
       // Labels: fade in during Phase 1, fade out during Phase 2
@@ -255,7 +265,7 @@ const SensorExploded: React.FC = () => {
         <div className={`${styles.cornerMark} ${styles.cornerBL}`} />
         <div className={`${styles.cornerMark} ${styles.cornerBR}`} />
 
-        <div className={styles.header}>
+        <div ref={headerRef} className={styles.header}>
           <span className={styles.tag}>HARDWARE · SMARTCROP STATION v2.1</span>
           <h2 ref={titleRef} className={styles.title}>Sensor de Campo</h2>
           <p ref={subtitleRef} className={styles.subtitle}>
