@@ -179,27 +179,12 @@ const SensorExploded: React.FC = () => {
         pinSpacing: false,
       });
 
-      // Title reveal
-      if (titleRef.current) {
-        gsap.fromTo(titleRef.current,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out',
-            scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none reverse' } });
-      }
-      if (subtitleRef.current) {
-        gsap.fromTo(subtitleRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.4, delay: 0.15, ease: 'power2.out',
-            scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none reverse' } });
-      }
-
-      // Header fade out + slide up on scroll so it doesn't cover the model/labels
+      // Header starts hidden, fades in at the end of scroll (Phase 3)
       if (headerRef.current) {
-        gsap.to(headerRef.current, {
-          opacity: 0, y: -40,
-          ease: 'power2.in',
-          scrollTrigger: { trigger: section, start: '3% top', end: '12% top', scrub: 0.5 },
-        });
+        gsap.fromTo(headerRef.current,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, ease: 'power2.out',
+            scrollTrigger: { trigger: section, start: '75% top', end: '90% top', scrub: 0.5 } });
       }
 
       // Labels: fade in during Phase 1, fade out during Phase 2
